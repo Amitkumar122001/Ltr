@@ -37,9 +37,9 @@ export interface VehicleCheckSheetPayload {
     vehicleModel: string;
     driverName: string;
     km: number;
-    gatePassNo: string;
-    department: string;
-    user: string;
+    gatePassNo: string | null;
+    department: string | null;
+    user: string | null;
     inspection: InspectionList;
     lastServiceDate: Date | string | null;
     lastServiceKm: number;
@@ -73,6 +73,12 @@ export class InspectionEntryDto {
     value!: string | null;
 }
 
+export interface ApiResponse<T> {
+    status: boolean;
+    message: string;
+    result: T | null;
+}
+
 export class VehicleCheckSheetDto implements VehicleCheckSheetPayload {
     @IsNotEmpty()
     checkDate!: Date | string | null;
@@ -97,16 +103,15 @@ export class VehicleCheckSheetDto implements VehicleCheckSheetPayload {
     @IsNumber()
     km!: number;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
-    gatePassNo!: string;
+    gatePassNo!: string | null;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
-    department!: string;
+    department!: string | null;
 
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     user!: string;
 
     @IsNotEmpty()

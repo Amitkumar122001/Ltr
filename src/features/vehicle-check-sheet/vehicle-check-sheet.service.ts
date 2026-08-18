@@ -19,14 +19,15 @@ export class VehicleCheckSheetService {
     ) { }
 
     async create(payload: VehicleCheckSheetDto): Promise<VehicleCheckSheetPayload> {
-      console.log("------------");
-        console.log(payload);
+        const sanitizedPayload = Object.fromEntries(
+            Object.entries(payload).map(([key, value]) => [key, value === null ? undefined : value]),
+        ) as VehicleCheckSheetDto;
+
         const document = await this.vehicleCheckSheetModel.create({
-            ...payload,
+            ...sanitizedPayload,
             checkDate: payload.checkDate ?? new Date(),
         });
 
-        console.log(document, "document")
         return document.toObject() as VehicleCheckSheetPayload;
     }
 

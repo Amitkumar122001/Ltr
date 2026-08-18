@@ -24,14 +24,14 @@ export class VehicleCheckSheet {
     @Prop({ type: Number, required: true })
     km!: number;
 
-    @Prop({ type: String, required: true })
-    gatePassNo!: string;
+    @Prop({ type: String, default: null })
+    gatePassNo!: string | null;
 
-    @Prop({ type: String, required: true })
-    department!: string;
+    @Prop({ type: String, default: null })
+    department!: string | null;
 
-    @Prop({ type: String, required: true })
-    user!: string;
+    @Prop({ type: String, default: null })
+    user!: string | null;
 
     @Prop({
         type: [
@@ -59,10 +59,10 @@ export class VehicleCheckSheet {
     @Prop({ type: Number, required: true })
     odometerKm!: number;
 
-    @Prop({ type: String,  default:"" })
+    @Prop({ type: String, default: "" })
     otherRemarks!: string;
 
-    @Prop({ type: String, default:"" })
+    @Prop({ type: String, default: "" })
     suggestions!: string;
 
     @Prop({ type: String, required: true })
